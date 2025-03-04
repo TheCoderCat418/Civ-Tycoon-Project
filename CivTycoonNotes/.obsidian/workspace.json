@@ -11,14 +11,17 @@
             "id": "55ee6ee5ac75158b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "City skylines.md",
-                "mode": "source",
-                "source": false
+                "file": "Cities classmap.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": -0.5
+                }
               },
-              "icon": "lucide-file",
-              "title": "City skylines"
+              "icon": "lucide-layout-dashboard",
+              "title": "Cities classmap"
             }
           }
         ]
@@ -170,9 +173,9 @@
   },
   "active": "55ee6ee5ac75158b",
   "lastOpenFiles": [
-    "The Farm.md",
     "City skylines.md",
-    "Untitled.canvas",
+    "Cities classmap.canvas",
+    "The Farm.md",
     "2025-02-28.md",
     "Objects/The Fence.md",
     "Objects",

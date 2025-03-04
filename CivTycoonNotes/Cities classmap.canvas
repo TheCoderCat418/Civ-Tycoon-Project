@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"da0d096d7bf0fb80","x":-625,"y":-300,"width":250,"height":60,"type":"text","text":"Building\n+Link to city resources"},
+		{"id":"a377b97bfe1d85e8","x":160,"y":-300,"width":250,"height":60,"type":"text","text":"Terrain"},
+		{"id":"b82a51365d3f193e","x":-500,"y":-120,"width":250,"height":60,"type":"text","text":"Living Building\n+People"},
+		{"id":"d182313e557f2e99","x":-750,"y":-120,"width":250,"height":60,"type":"text","text":"Storage Building"},
+		{"id":"b88eb19f134f4ee9","x":-250,"y":-300,"width":220,"height":100,"type":"text","text":"Tile\nCorrelation to the board"},
+		{"id":"eed1ee48922d8e3d","x":-625,"y":-480,"width":250,"height":60,"type":"text","text":"Land\n+2D grid of tiles"},
+		{"id":"430cd3139bc76d4f","x":-375,"y":180,"width":250,"height":60,"type":"text","text":"House"},
+		{"id":"8bf9ddeb8e854dd0","x":-375,"y":240,"width":250,"height":60,"type":"text","text":"Apartment\n"},
+		{"id":"8558d7934be60a1e","x":-375,"y":300,"width":250,"height":60,"type":"text","text":"School"},
+		{"id":"fa99815061eae269","x":-375,"y":100,"width":250,"height":60,"type":"text","text":"Generic"},
+		{"id":"4f8aed2c3a0a942e","x":-1000,"y":-360,"width":250,"height":60,"type":"text","text":""},
+		{"id":"3c31ccbe4889903c","x":-250,"y":-540,"width":250,"height":60,"type":"text","text":"BoardController"}
+	],
+	"edges":[
+		{"id":"2330064ead5fed3c","fromNode":"da0d096d7bf0fb80","fromSide":"bottom","toNode":"b82a51365d3f193e","toSide":"top","label":"extends"},
+		{"id":"ae872d3020170a82","fromNode":"da0d096d7bf0fb80","fromSide":"bottom","toNode":"d182313e557f2e99","toSide":"top"},
+		{"id":"b7cd2f8e5f68a4a0","fromNode":"eed1ee48922d8e3d","fromSide":"bottom","toNode":"da0d096d7bf0fb80","toSide":"top"},
+		{"id":"1eec05c159dd2d3a","fromNode":"b82a51365d3f193e","fromSide":"bottom","toNode":"fa99815061eae269","toSide":"top"}
+	]
+}
