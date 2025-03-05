@@ -9,22 +9,7 @@ public class Controller {
     @FXML
     public GridPane gp;
     public void initialize(){
-        while (gp.getColumnConstraints().size() > 0) {
-            gp.getColumnConstraints().remove(0);
-        }
-        while (gp.getRowConstraints().size() > 0) {
-            gp.getRowConstraints().remove(0);
-        }
-        int x = 100;
-        for(int i = 0; i < x; i++){
-            gp.getRowConstraints().add(new RowConstraints(gp.getPrefHeight()/x));
-            gp.getColumnConstraints().add(new ColumnConstraints(gp.getPrefWidth()/x));
-        }
-        for(int i = 0; i < x*x; i++){
-            gp.
-        }
-        System.out.println(gp.getRowCount());
-        System.out.println(gp.getPrefWidth());
-        
+        GridController gc = new GridController(new World(10), gp);
+        gc.getTile(0,5);// NEED TO FIX NOT ALIGNED
     }
 }

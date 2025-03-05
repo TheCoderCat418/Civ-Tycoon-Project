@@ -1,5 +1,7 @@
 package com.thecodercat418.civtycoon;
 
-public class Tile {
+import javafx.scene.Node;
 
+public class Tile {
+    Node linkedPane;
 }
