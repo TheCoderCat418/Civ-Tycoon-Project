@@ -8,8 +8,10 @@ import javafx.scene.layout.RowConstraints;
 public class Controller {
     @FXML
     public GridPane gp;
+    public GridPane gpmm;
     public void initialize(){
-        GridController gc = new GridController(new World(10), gp);
-        gc.getTile(0,5);// NEED TO FIX NOT ALIGNED
+        GridController gc = new GridController(new World(10), gp, gpmm);
+        gc.getTile(0,0);
+        gc.setZoom(5, 1, 0);
     }
 }
