@@ -2,7 +2,6 @@ package com.thecodercat418.civtycoon;
 
 import java.util.ArrayList;
 
-import javafx.scene.layout.GridPane;
 
 public class World {
     int dim;
