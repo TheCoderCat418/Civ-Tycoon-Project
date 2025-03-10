@@ -23,8 +23,26 @@
               "icon": "lucide-layout-dashboard",
               "title": "Cities classmap"
             }
+          },
+          {
+            "id": "66415d54082466d1",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Cities classmap.canvas",
+                "viewState": {
+                  "x": -326.132075471698,
+                  "y": -372.26415094339626,
+                  "zoom": -0.05343925896146061
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "Cities classmap"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -171,13 +189,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "55ee6ee5ac75158b",
+  "active": "66415d54082466d1",
   "lastOpenFiles": [
+    "Objects/The Fence.md",
     "City skylines.md",
     "Cities classmap.canvas",
     "The Farm.md",
     "2025-02-28.md",
-    "Objects/The Fence.md",
     "Objects",
     "Contributors to Wikimedia projects.md",
     "Funky Barn - Wikipedia.md",

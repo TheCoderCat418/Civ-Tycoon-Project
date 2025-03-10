@@ -4,7 +4,7 @@
 		{"id":"a377b97bfe1d85e8","type":"text","text":"Terrain","x":160,"y":-300,"width":250,"height":60},
 		{"id":"b82a51365d3f193e","type":"text","text":"Living Building\n+People","x":-500,"y":-120,"width":250,"height":60},
 		{"id":"d182313e557f2e99","type":"text","text":"Storage Building","x":-750,"y":-120,"width":250,"height":60},
-		{"id":"eed1ee48922d8e3d","type":"text","text":"Land\n+2D grid of tiles","x":-625,"y":-480,"width":250,"height":60},
+		{"id":"eed1ee48922d8e3d","type":"text","text":"World\n+2D Square of tiles","x":-625,"y":-480,"width":250,"height":60},
 		{"id":"430cd3139bc76d4f","type":"text","text":"House","x":-375,"y":180,"width":250,"height":60},
 		{"id":"8bf9ddeb8e854dd0","type":"text","text":"Apartment\n","x":-375,"y":240,"width":250,"height":60},
 		{"id":"8558d7934be60a1e","type":"text","text":"School","x":-375,"y":300,"width":250,"height":60},
@@ -12,12 +12,14 @@
 		{"id":"4f8aed2c3a0a942e","type":"text","text":"","x":-1000,"y":-360,"width":250,"height":60},
 		{"id":"3c31ccbe4889903c","type":"text","text":"BoardController","x":-250,"y":-540,"width":250,"height":60},
 		{"id":"b88eb19f134f4ee9","type":"text","text":"Tile\nCorrelation to the board","x":-250,"y":-460,"width":220,"height":100},
-		{"id":"053ab7d75e8cbf85","x":-125,"y":-150,"width":250,"height":60,"type":"text","text":"World\n"}
+		{"id":"053ab7d75e8cbf85","type":"text","text":"World\n","x":-125,"y":-150,"width":250,"height":60},
+		{"id":"e6482d984d99b1b1","x":-940,"y":-475,"width":250,"height":50,"type":"text","text":"Territory\n"}
 	],
 	"edges":[
 		{"id":"2330064ead5fed3c","fromNode":"da0d096d7bf0fb80","fromSide":"bottom","toNode":"b82a51365d3f193e","toSide":"top","label":"extends"},
 		{"id":"ae872d3020170a82","fromNode":"da0d096d7bf0fb80","fromSide":"bottom","toNode":"d182313e557f2e99","toSide":"top"},
 		{"id":"b7cd2f8e5f68a4a0","fromNode":"eed1ee48922d8e3d","fromSide":"bottom","toNode":"da0d096d7bf0fb80","toSide":"top"},
-		{"id":"1eec05c159dd2d3a","fromNode":"b82a51365d3f193e","fromSide":"bottom","toNode":"fa99815061eae269","toSide":"top"}
+		{"id":"1eec05c159dd2d3a","fromNode":"b82a51365d3f193e","fromSide":"bottom","toNode":"fa99815061eae269","toSide":"top"},
+		{"id":"4d51bc95cca0cacb","fromNode":"eed1ee48922d8e3d","fromSide":"left","toNode":"e6482d984d99b1b1","toSide":"right"}
 	]
 }
