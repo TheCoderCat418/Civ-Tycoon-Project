@@ -159,12 +159,23 @@ public class GridController {
 
     public Territory createTerritory(Tile startTile, Tile endTile) {
         Territory t = new Territory();
-        for (int i = startTile.position.x; i < endTile.position.x - startTile.position.x; i++) {
-            for (int j = startTile.position.y; j < endTile.position.y - startTile.position.y; j++) {
+        if(endTile.position.x<startTile.position.x || endTile.position.y<startTile.position.y){
+            for (int i = endTile.position.x; i < startTile.position.x+1; i++) {
+                for (int j = endTile.position.y; j < startTile.position.y+1; j++) {
+                    t.t.add(loadedWorld.map.get(i).get(j));
+                    loadedWorld.map.get(i).get(j).linkedTerritory = t;
+                    loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: orange;");
+                }
+            }
+        }else{
+        for (int i = startTile.position.x; i < endTile.position.x+1; i++) {
+            for (int j = startTile.position.y; j < endTile.position.y+1; j++) {
+                t.t.add(loadedWorld.map.get(i).get(j));
                 loadedWorld.map.get(i).get(j).linkedTerritory = t;
                 loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: orange;");
             }
         }
+    }
         return t;
     }
 }

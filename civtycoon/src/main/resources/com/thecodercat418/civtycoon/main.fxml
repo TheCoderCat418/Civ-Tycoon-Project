@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -31,5 +33,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
+      <ToggleButton layoutX="800.0" layoutY="54.0" mnemonicParsing="false" text="Zone Area">
+         <toggleGroup>
+            <ToggleGroup fx:id="main" />
+         </toggleGroup>
+      </ToggleButton>
+      <ToggleButton fx:id="RZ" layoutX="876.0" layoutY="189.0" mnemonicParsing="false" style="-fx-background-color: lightgreen;" text="Residental">
+         <toggleGroup>
+            <ToggleGroup fx:id="z" />
+         </toggleGroup>
+      </ToggleButton>
+      <ToggleButton fx:id="CZ" layoutX="947.0" layoutY="189.0" mnemonicParsing="false" style="-fx-background-color: lightblue;" text="Commerical" toggleGroup="$z" />
+      <ToggleButton fx:id="IZ" layoutX="1027.0" layoutY="189.0" mnemonicParsing="false" style="-fx-background-color: orange;" text="Industrial" toggleGroup="$z" />
    </children>
 </AnchorPane>
