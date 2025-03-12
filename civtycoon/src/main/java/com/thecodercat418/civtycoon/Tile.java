@@ -1,12 +1,14 @@
 package com.thecodercat418.civtycoon;
 
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 
 public class Tile {
     World linkedWorld;
     Territory linkedTerritory;
 
     Node linkedChildPane;
+    GridPane linkedAnimationGrid;
 
     Position position;
 

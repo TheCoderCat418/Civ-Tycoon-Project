@@ -68,7 +68,16 @@ public class GridController {
                     }
                 });
                 gp.add(p, i, j);
+                GridPane animationGrid = new GridPane();
+                for (int z = 0; z < 16; z++) {
+                    animationGrid.getRowConstraints().add(new RowConstraints((gp.getPrefHeight() / world.dimx) / 16));
+                    animationGrid.getColumnConstraints().add(new ColumnConstraints((gp.getPrefWidth() / world.dimx) / 16));
+                }
+                animationGrid.setGridLinesVisible(true);
+                animationGrid.setVisible(true);
+                p.getChildren().add(animationGrid);
                 currentTile.linkedChildPane = p;
+                currentTile.linkedAnimationGrid = animationGrid;
             }
         }
 
@@ -115,6 +124,7 @@ public class GridController {
                     minigridnum = Integer.toString(f) + Integer.toString(t);
                     setZoom(10, f, t);
                 });
+
                 gpmm.add(p, i, j);
 
                 miniWorld.map.get(i).get(j).linkedChildPane = p;
@@ -144,6 +154,37 @@ public class GridController {
 
         for (int i = dimOfZoom * minimapx; i < dimOfZoom + dimOfZoom * minimapx; i++) {
             for (int j = dimOfZoom * minimapy; j < dimOfZoom + dimOfZoom * minimapy; j++) {
+                GridPane animGrid = loadedWorld.map.get(i).get(j).linkedAnimationGrid;
+
+                while (!animGrid.getColumnConstraints().isEmpty()) {
+                    animGrid.getColumnConstraints().removeFirst();
+                }
+                while (!animGrid.getRowConstraints().isEmpty()) {
+                    animGrid.getRowConstraints().removeFirst();
+                }
+                for (int z = animGrid.getChildren().size() - 1; z > 0; z--) {
+                    if (animGrid.getChildren().get(i) instanceof Group) {
+                        continue;
+                    }
+                    animGrid.getChildren().remove(i);
+                }
+
+                for (int z = 0; z < 16; z++) {
+                    animGrid.getRowConstraints().add(new RowConstraints((gp.getPrefHeight() / dimOfZoom) / 16));
+                    animGrid.getColumnConstraints().add(new ColumnConstraints((gp.getPrefHeight() / dimOfZoom) / 16));
+                }
+                for (int z = 0; z < 16*16; z++) {
+                    animGrid.add(new Pane(), z/16, i%16);
+                }
+                //Fill with panes
+                //Tell controller to start only specified Tiles gathered here.
+
+                //When zooming out, need to resize grid again. Think about removing it completly when not needed. Will have to reregister with the Animation conttroler tho
+                
+
+
+
+
                 gp.add(loadedWorld.map.get(i).get(j).linkedChildPane, i - dimOfZoom * minimapx,
                         j - dimOfZoom * minimapy);
             }
