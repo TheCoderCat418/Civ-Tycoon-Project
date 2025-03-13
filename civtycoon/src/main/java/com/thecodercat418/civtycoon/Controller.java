@@ -14,6 +14,7 @@ public class Controller {
     public ToggleButton IZ;
     Action a = null;
     public void initialize(){
+        new AnimationSequence(null);
         GridController gc = new GridController(new World(20), gp, gpmm, this);
         gc.getTile(0,1);
         //gc.setZoom(5, 1, 0);
