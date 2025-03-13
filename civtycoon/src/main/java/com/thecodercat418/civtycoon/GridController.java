@@ -1,5 +1,7 @@
 package com.thecodercat418.civtycoon;
 
+import java.util.ArrayList;
+
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
@@ -19,10 +21,13 @@ public class GridController {
     World loadedWorld;
     World miniWorld;
 
+    Controller c;
+
     public static String minigridnum = "";
     public static Tile lastclicked = null;
 
-    public GridController(World world, GridPane gp, GridPane gpmm) {
+    public GridController(World world, GridPane gp, GridPane gpmm, Controller c) {
+        this.c = c;
         if (world.dimx != world.dimy) {
             throw new RuntimeException("MAIN GRID WORLD MUST BE A SQUARE.");
         }
@@ -58,26 +63,18 @@ public class GridController {
                             lastclicked = null;
                         } else {
                             createTerritory(lastclicked, currentTile);
-                            //p.setStyle("");
+                            // p.setStyle("");
                             lastclicked = null;
                         }
-                        
+
                     } else {
                         lastclicked = currentTile;
                         System.out.println(lastclicked);
                     }
                 });
                 gp.add(p, i, j);
-                GridPane animationGrid = new GridPane();
-                for (int z = 0; z < 16; z++) {
-                    animationGrid.getRowConstraints().add(new RowConstraints((gp.getPrefHeight() / world.dimx) / 16));
-                    animationGrid.getColumnConstraints().add(new ColumnConstraints((gp.getPrefWidth() / world.dimx) / 16));
-                }
-                animationGrid.setGridLinesVisible(true);
-                animationGrid.setVisible(true);
-                p.getChildren().add(animationGrid);
+
                 currentTile.linkedChildPane = p;
-                currentTile.linkedAnimationGrid = animationGrid;
             }
         }
 
@@ -135,6 +132,13 @@ public class GridController {
     }
 
     public void setZoom(int dimOfZoom, int minimapx, int minimapy) {
+        for (ArrayList<Tile> art : loadedWorld.map) {
+            for (Tile t : art) {
+                for (int i = t.linkedChildPane.getChildren().size() - 1; i > -1; i--) {
+                    t.linkedChildPane.getChildren().remove(i);
+                }
+            }
+        }
         for (int i = gp.getChildren().size() - 1; i > 0; i--) {
             if (gp.getChildren().get(i) instanceof Group) {
                 continue;
@@ -154,36 +158,42 @@ public class GridController {
 
         for (int i = dimOfZoom * minimapx; i < dimOfZoom + dimOfZoom * minimapx; i++) {
             for (int j = dimOfZoom * minimapy; j < dimOfZoom + dimOfZoom * minimapy; j++) {
-                GridPane animGrid = loadedWorld.map.get(i).get(j).linkedAnimationGrid;
 
-                while (!animGrid.getColumnConstraints().isEmpty()) {
-                    animGrid.getColumnConstraints().removeFirst();
-                }
-                while (!animGrid.getRowConstraints().isEmpty()) {
-                    animGrid.getRowConstraints().removeFirst();
-                }
-                for (int z = animGrid.getChildren().size() - 1; z > 0; z--) {
-                    if (animGrid.getChildren().get(i) instanceof Group) {
-                        continue;
+                if (dimOfZoom != loadedWorld.dimx) {
+
+                    GridPane animationGrid = new GridPane();
+
+                    while (!animationGrid.getColumnConstraints().isEmpty()) {
+                        animationGrid.getColumnConstraints().removeFirst();
                     }
-                    animGrid.getChildren().remove(i);
+                    while (!animationGrid.getRowConstraints().isEmpty()) {
+                        animationGrid.getRowConstraints().removeFirst();
+                    }
+                    for (int z = animationGrid.getChildren().size() - 1; z > 0; z--) {
+                        if (animationGrid.getChildren().get(i) instanceof Group) {
+                            continue;
+                        }
+                        animationGrid.getChildren().remove(i);
+                    }
+
+                    for (int z = 0; z < 16; z++) {
+                        animationGrid.getRowConstraints()
+                                .add(new RowConstraints((gp.getPrefHeight() / dimOfZoom) / 16));
+                        animationGrid.getColumnConstraints()
+                                .add(new ColumnConstraints((gp.getPrefWidth() / dimOfZoom) / 16));
+                    }
+                    animationGrid.setGridLinesVisible(true);
+                    animationGrid.setVisible(true);
+                    loadedWorld.map.get(i).get(j).linkedChildPane.getChildren().add(animationGrid);
+                    loadedWorld.map.get(i).get(j).linkedAnimationGrid = animationGrid;
+                    // Fill with panes
+                    // Tell controller to start only specified Tiles gathered here.
+
+                    // When zooming out, need to resize grid again. Think about removing it
+                    // completly when not needed. Will have to reregister with the Animation
+                    // conttroler tho
+
                 }
-
-                for (int z = 0; z < 16; z++) {
-                    animGrid.getRowConstraints().add(new RowConstraints((gp.getPrefHeight() / dimOfZoom) / 16));
-                    animGrid.getColumnConstraints().add(new ColumnConstraints((gp.getPrefHeight() / dimOfZoom) / 16));
-                }
-                for (int z = 0; z < 16*16; z++) {
-                    animGrid.add(new Pane(), z/16, i%16);
-                }
-                //Fill with panes
-                //Tell controller to start only specified Tiles gathered here.
-
-                //When zooming out, need to resize grid again. Think about removing it completly when not needed. Will have to reregister with the Animation conttroler tho
-                
-
-
-
 
                 gp.add(loadedWorld.map.get(i).get(j).linkedChildPane, i - dimOfZoom * minimapx,
                         j - dimOfZoom * minimapy);
@@ -199,24 +209,56 @@ public class GridController {
     }
 
     public Territory createTerritory(Tile startTile, Tile endTile) {
+        // Allow overlapping?? Overwrites? Merging? Filling the gaps?
+        String color = "";
+        switch (c.getZoningActionInformation()) {
+            case RESIDENTIAL:
+                color = "green";
+                break;
+            case COMMERCIAL:
+                color = "blue";
+                break;
+            case INDUSTRIAL:
+                color = "orange";
+                break;
+            default:
+            color = "black";
+                break;
+        }
         Territory t = new Territory();
-        if(endTile.position.x<startTile.position.x || endTile.position.y<startTile.position.y){
-            for (int i = endTile.position.x; i < startTile.position.x+1; i++) {
-                for (int j = endTile.position.y; j < startTile.position.y+1; j++) {
+        if (endTile.position.x <= startTile.position.x && endTile.position.y <= startTile.position.y) {
+            for (int i = endTile.position.x; i < startTile.position.x + 1; i++) {
+                for (int j = endTile.position.y; j < startTile.position.y + 1; j++) {
                     t.t.add(loadedWorld.map.get(i).get(j));
                     loadedWorld.map.get(i).get(j).linkedTerritory = t;
-                    loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: orange;");
+                    loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: " + color + ";");
                 }
             }
-        }else{
-        for (int i = startTile.position.x; i < endTile.position.x+1; i++) {
-            for (int j = startTile.position.y; j < endTile.position.y+1; j++) {
-                t.t.add(loadedWorld.map.get(i).get(j));
-                loadedWorld.map.get(i).get(j).linkedTerritory = t;
-                loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: orange;");
+        } else if (endTile.position.x >= startTile.position.x && endTile.position.y >= startTile.position.y) {
+            for (int i = startTile.position.x; i < endTile.position.x + 1; i++) {
+                for (int j = startTile.position.y; j < endTile.position.y + 1; j++) {
+                    t.t.add(loadedWorld.map.get(i).get(j));
+                    loadedWorld.map.get(i).get(j).linkedTerritory = t;
+                    loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: " + color + ";");
+                }
+            }
+        } else if (endTile.position.x > startTile.position.x && endTile.position.y < startTile.position.y) {
+            for (int i = startTile.position.x; i < endTile.position.x + 1; i++) {
+                for (int j = endTile.position.y; j < startTile.position.y + 1; j++) {
+                    t.t.add(loadedWorld.map.get(i).get(j));
+                    loadedWorld.map.get(i).get(j).linkedTerritory = t;
+                    loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: " + color + ";");
+                }
+            }
+        } else if (endTile.position.x < startTile.position.x && endTile.position.y > startTile.position.y) {
+            for (int i = endTile.position.x; i < startTile.position.x + 1; i++) {
+                for (int j = startTile.position.y; j < endTile.position.y + 1; j++) {
+                    t.t.add(loadedWorld.map.get(i).get(j));
+                    loadedWorld.map.get(i).get(j).linkedTerritory = t;
+                    loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: " + color + ";");
+                }
             }
         }
-    }
         return t;
     }
 }

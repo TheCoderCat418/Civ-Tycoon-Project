@@ -1,6 +1,6 @@
 package com.thecodercat418.civtycoon;
 
-public class Building {
+public class Building extends Property{
     int buildingLevel;
     
 }

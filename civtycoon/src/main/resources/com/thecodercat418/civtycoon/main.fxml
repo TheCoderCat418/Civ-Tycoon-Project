@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecodercat418.civtycoon.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecodercat418.civtycoon.Controller">
    <children>
       <GridPane fx:id="gp" gridLinesVisible="true" prefHeight="800.0" prefWidth="800.0">
         <columnConstraints>
@@ -33,7 +33,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <ToggleButton layoutX="800.0" layoutY="54.0" mnemonicParsing="false" text="Zone Area">
+      <ToggleButton layoutX="800.0" layoutY="54.0" mnemonicParsing="false" onAction="#changeAction" text="Zone Area">
          <toggleGroup>
             <ToggleGroup fx:id="main" />
          </toggleGroup>
