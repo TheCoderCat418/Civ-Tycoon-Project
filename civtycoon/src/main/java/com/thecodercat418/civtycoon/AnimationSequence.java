@@ -17,7 +17,7 @@ public class AnimationSequence {
         
 
             try {
-                BufferedImage bi = ImageIO.read(AnimationSequence.class.getResourceAsStream("sprite_0.png"));
+                BufferedImage bi = ImageIO.read(AnimationSequence.class.getResourceAsStream("sprite_5.png"));
                 magicNumber = bi.getWidth();
                 for(int i = 0; i <  bi.getWidth(); i++){
                     for(int j = 0; j < bi.getHeight(); j++){

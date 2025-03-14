@@ -182,6 +182,11 @@ public class GridController {
                         animationGrid.getColumnConstraints()
                                 .add(new ColumnConstraints((gp.getPrefWidth() / dimOfZoom) / 16));
                     }
+                    for(int z = 0; z <16;z++){
+                        for(int f = 0; f<16;f++){
+                            animationGrid.add(new Pane(), z,f);
+                        }
+                    }
                     animationGrid.setGridLinesVisible(true);
                     animationGrid.setVisible(true);
                     loadedWorld.map.get(i).get(j).linkedChildPane.getChildren().add(animationGrid);

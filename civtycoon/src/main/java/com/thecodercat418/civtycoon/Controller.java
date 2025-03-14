@@ -16,8 +16,8 @@ public class Controller {
     public void initialize(){
         new AnimationSequence(null);
         GridController gc = new GridController(new World(20), gp, gpmm, this);
-        gc.getTile(0,1);
-        //gc.setZoom(5, 1, 0);
+        gc.setZoom(5, 0, 0);
+        new AnimationController(gc.getTile(0,0), new AnimationSequence(null)).play();;
     }
 
     public void changeAction(ActionEvent ae){
