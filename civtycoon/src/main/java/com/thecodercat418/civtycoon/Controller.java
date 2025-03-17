@@ -58,7 +58,8 @@ public class Controller {
     }
 
     public void update() {
-        //landNeeds.getData().clear();
+        landNeeds.getData().clear();
+        System.out.println(InfomationController.resWant*100);
         XYChart.Series<String, Number> s = new XYChart.Series<>();
         s.getData().add(new XYChart.Data<String,Number>("Residental", InfomationController.resWant*100));
         landNeeds.getData().add(s);
