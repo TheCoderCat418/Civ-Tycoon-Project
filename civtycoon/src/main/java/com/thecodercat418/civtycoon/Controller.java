@@ -14,10 +14,12 @@ public class Controller {
     public ToggleButton IZ;
     Action a = null;
     public void initialize(){
-        new AnimationSequence(null);
+        TickManager.setup();
+        AnimationManager.setup();
         GridController gc = new GridController(new World(20), gp, gpmm, this);
-        gc.setZoom(5, 0, 0);
-        new AnimationController(gc.getTile(0,0), new AnimationSequence(null)).play();;
+        //gc.setZoom(5, 0, 0);
+
+        
     }
 
     public void changeAction(ActionEvent ae){

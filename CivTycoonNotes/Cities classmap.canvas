@@ -8,18 +8,30 @@
 		{"id":"8bf9ddeb8e854dd0","type":"text","text":"Apartment\n","x":-375,"y":240,"width":250,"height":60},
 		{"id":"8558d7934be60a1e","type":"text","text":"School","x":-375,"y":300,"width":250,"height":60},
 		{"id":"fa99815061eae269","type":"text","text":"Generic","x":-375,"y":100,"width":250,"height":60},
-		{"id":"4f8aed2c3a0a942e","type":"text","text":"","x":-1000,"y":-360,"width":250,"height":60},
 		{"id":"3c31ccbe4889903c","type":"text","text":"BoardController","x":-250,"y":-540,"width":250,"height":60},
 		{"id":"b88eb19f134f4ee9","type":"text","text":"Tile\nCorrelation to the board","x":-250,"y":-460,"width":220,"height":100},
 		{"id":"eed1ee48922d8e3d","type":"text","text":"World\n+2D Square of tiles","x":-625,"y":-800,"width":250,"height":60},
-		{"id":"196ff76b17885658","x":-625,"y":-600,"width":250,"height":60,"type":"text","text":"Territory\n+2D smaller world"},
-		{"id":"b329291e16c5b05e","x":-625,"y":-460,"width":250,"height":60,"type":"text","text":"Property\n"}
+		{"id":"196ff76b17885658","type":"text","text":"Territory\n+2D smaller world","x":-625,"y":-600,"width":250,"height":60},
+		{"id":"b329291e16c5b05e","type":"text","text":"Property\n","x":-625,"y":-460,"width":250,"height":60},
+		{"id":"4f8aed2c3a0a942e","type":"text","text":"Animation\n","x":-1560,"y":-292,"width":250,"height":60},
+		{"id":"c9e75f18e9ff74a9","x":-1140,"y":-262,"width":250,"height":60,"type":"text","text":"AnimationGridPane\n"},
+		{"id":"b0b81b68d110170c","x":-1062,"y":-480,"width":250,"height":60,"type":"text","text":"Tile\n"},
+		{"id":"a43c8c6747e3920b","type":"text","text":"Animation\n","x":-1607,"y":180,"width":250,"height":60},
+		{"id":"6bfd7e1986ea5844","type":"text","text":"AnimationGridPane\n","x":-1187,"y":210,"width":250,"height":60},
+		{"id":"330c5589b794d6c9","type":"text","text":"Tile\n","x":-1109,"y":-8,"width":250,"height":60},
+		{"id":"aca0464e3f602a10","x":-1810,"y":-120,"width":250,"height":60,"type":"text","text":"AnimationController\n"}
 	],
 	"edges":[
 		{"id":"2330064ead5fed3c","fromNode":"da0d096d7bf0fb80","fromSide":"bottom","toNode":"b82a51365d3f193e","toSide":"top","label":"extends"},
 		{"id":"ae872d3020170a82","fromNode":"da0d096d7bf0fb80","fromSide":"bottom","toNode":"d182313e557f2e99","toSide":"top"},
 		{"id":"1eec05c159dd2d3a","fromNode":"b82a51365d3f193e","fromSide":"bottom","toNode":"fa99815061eae269","toSide":"top"},
 		{"id":"fa859af6086babe6","fromNode":"196ff76b17885658","fromSide":"bottom","toNode":"b329291e16c5b05e","toSide":"top"},
-		{"id":"d8f0a6049740503a","fromNode":"b329291e16c5b05e","fromSide":"bottom","toNode":"da0d096d7bf0fb80","toSide":"top"}
+		{"id":"d8f0a6049740503a","fromNode":"b329291e16c5b05e","fromSide":"bottom","toNode":"da0d096d7bf0fb80","toSide":"top"},
+		{"id":"f0c4c6320e66fac4","fromNode":"b0b81b68d110170c","fromSide":"bottom","toNode":"c9e75f18e9ff74a9","toSide":"top","label":"Holds"},
+		{"id":"71e846c892aa5d95","fromNode":"b0b81b68d110170c","fromSide":"left","toNode":"4f8aed2c3a0a942e","toSide":"top","label":"Holds, Provide clock"},
+		{"id":"606899463b4a7cb7","fromNode":"4f8aed2c3a0a942e","fromSide":"right","toNode":"c9e75f18e9ff74a9","toSide":"left","label":"Interacts"},
+		{"id":"1b6bcd780d003834","fromNode":"a43c8c6747e3920b","fromSide":"right","toNode":"6bfd7e1986ea5844","toSide":"left","label":"Interacts"},
+		{"id":"6d4e5436b7712534","fromNode":"aca0464e3f602a10","fromSide":"bottom","toNode":"a43c8c6747e3920b","toSide":"top","label":"Holds, Provide clock"},
+		{"id":"31edd9e7f79bd96d","fromNode":"330c5589b794d6c9","fromSide":"bottom","toNode":"6bfd7e1986ea5844","toSide":"top","label":"Holds"}
 	]
 }

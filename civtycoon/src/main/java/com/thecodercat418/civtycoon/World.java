@@ -15,7 +15,7 @@ public class World {
         for(int i = 0; i < dim; i++){
             map.add(new ArrayList<>(dim));
             for(int j = 0; j < dim; j++){
-                map.get(i).add(new Tile(this, null,null, new Position(i, j)));
+                map.get(i).add(new Tile(this, null,null, new Position(i, j), BuildingType.NONE));
             }
 
         }
@@ -28,7 +28,7 @@ public class World {
         for(int i = 0; i < dimx; i++){
             map.add(new ArrayList<>(dimy));
             for(int j = 0; j < dimy; j++){
-                map.get(i).add(new Tile(this, null, null, new Position(i, j)));
+                map.get(i).add(new Tile(this, null, null, new Position(i, j), BuildingType.NONE));
             }
 
         }

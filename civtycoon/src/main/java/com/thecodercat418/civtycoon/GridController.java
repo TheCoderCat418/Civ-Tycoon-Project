@@ -190,7 +190,11 @@ public class GridController {
                     animationGrid.setGridLinesVisible(true);
                     animationGrid.setVisible(true);
                     loadedWorld.map.get(i).get(j).linkedChildPane.getChildren().add(animationGrid);
-                    loadedWorld.map.get(i).get(j).linkedAnimationGrid = animationGrid;
+                    loadedWorld.map.get(i).get(j).type = BuildingType.HOUSE; //
+                    loadedWorld.map.get(i).get(j).animationGrid = animationGrid;
+                    AnimationManager.register(new Animation(loadedWorld.map.get(i).get(j)));
+                    //TODO: REMOVE FORCE AUTO LOCK. Find a way to not keep requesting resources
+
                     // Fill with panes
                     // Tell controller to start only specified Tiles gathered here.
 
