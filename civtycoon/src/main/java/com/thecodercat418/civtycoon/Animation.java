@@ -32,7 +32,7 @@ public class Animation {
         if(!running){
             return;
         }
-        if(frameIndex>=asToPlay.frames.size()){
+        if(frameIndex>=asToPlay.frames.length){
             frameIndex = 0;
         }
         displayFrame(animationGrid, frameIndex);
@@ -44,7 +44,7 @@ public class Animation {
         int notPaneCounter = 0;
         for(int i = 0; i < animationGrid.getChildren().size(); i++){
             if(animationGrid.getChildren().get(i) instanceof Pane){
-                animationGrid.getChildren().get(i).setStyle("-fx-background-color: "+asToPlay.frames.get(frame).pixelGrid.get(i/asToPlay.frameSize).get(i%asToPlay.frameSize).toHexCode());
+                animationGrid.getChildren().get(i).setStyle("-fx-background-color: "+asToPlay.frames[frame].pixelGrid.get(i/asToPlay.frameSize).get(i%asToPlay.frameSize).toHexCode());
             }else{
                 notPaneCounter++;
             }
