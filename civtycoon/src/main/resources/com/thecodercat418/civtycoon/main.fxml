@@ -3,6 +3,7 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecodercat418.civtycoon.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecodercat418.civtycoon.Controller">
    <children>
       <GridPane fx:id="gp" gridLinesVisible="true" prefHeight="800.0" prefWidth="800.0">
         <columnConstraints>
@@ -41,13 +42,13 @@
             <ToggleGroup fx:id="main" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton fx:id="RZ" layoutX="876.0" layoutY="189.0" mnemonicParsing="false" style="-fx-background-color: lightgreen;" text="Residental">
+      <ToggleButton fx:id="RZ" layoutX="889.0" layoutY="54.0" mnemonicParsing="false" style="-fx-background-color: lightgreen;" text="Residental">
          <toggleGroup>
             <ToggleGroup fx:id="z" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton fx:id="CZ" layoutX="947.0" layoutY="189.0" mnemonicParsing="false" style="-fx-background-color: lightblue;" text="Commerical" toggleGroup="$z" />
-      <ToggleButton fx:id="IZ" layoutX="1027.0" layoutY="189.0" mnemonicParsing="false" style="-fx-background-color: orange;" text="Industrial" toggleGroup="$z" />
+      <ToggleButton fx:id="CZ" layoutX="960.0" layoutY="54.0" mnemonicParsing="false" style="-fx-background-color: lightblue;" text="Commerical" toggleGroup="$z" />
+      <ToggleButton fx:id="IZ" layoutX="1040.0" layoutY="54.0" mnemonicParsing="false" style="-fx-background-color: orange;" text="Industrial" toggleGroup="$z" />
       <BarChart fx:id="landNeeds" layoutX="960.0" layoutY="609.0" prefHeight="155.0" prefWidth="167.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
@@ -56,5 +57,8 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
+      <Label fx:id="resi" layoutX="1078.0" layoutY="573.0" text="Label" />
+      <ToggleButton fx:id="road" layoutX="876.0" layoutY="108.0" mnemonicParsing="false" text="Road" toggleGroup="$z" />
+      <ToggleButton layoutX="805.0" layoutY="108.0" mnemonicParsing="false" onAction="#changeAction" text="Build" toggleGroup="$main" />
    </children>
 </AnchorPane>

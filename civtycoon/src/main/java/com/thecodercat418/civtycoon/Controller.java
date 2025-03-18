@@ -1,14 +1,9 @@
 package com.thecodercat418.civtycoon;
 
-import java.util.Arrays;
-
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 
@@ -19,28 +14,37 @@ public class Controller {
     public ToggleButton RZ;
     public ToggleButton CZ;
     public ToggleButton IZ;
+    public ToggleButton road;
     public BarChart<String, Number> landNeeds;
-    Action a = null;
+    public Label resi;
+    public Action a = Action.ZONING;
 
     public void initialize() {
-        CategoryAxis x = new CategoryAxis(FXCollections.<String>observableArrayList(Arrays.asList(
-                "Residental", "Commerial", "Industrial")));
-        NumberAxis y = new NumberAxis();
-        landNeeds = new BarChart<>(x, y);
+        // CategoryAxis x = new
+        // CategoryAxis(FXCollections.<String>observableArrayList(Arrays.asList(
+        // "Residental", "Commerial", "Industrial")));
+        // NumberAxis y = new NumberAxis();
+        // landNeeds = new BarChart<>(x, y);
         TickManager.setup();
         AnimationManager.setup();
+        InfomationController.setup();
         TickManager.register(() -> {
             update();
         });
-        GridController gc = new GridController(new World(20), gp, gpmm, this);
+        new GridController(new World(20), gp, gpmm, this);
         // gc.setZoom(5, 0, 0);
 
     }
 
     public void changeAction(ActionEvent ae) {
         ToggleButton b = (ToggleButton) (ae.getSource());
-        if (b.getText().equals("Zone Area")) {
-            a = Action.ZONING;
+        switch (b.getText()) {
+            case "Zone Area":
+                a = Action.ZONING;
+                break;
+            case "Build":
+                a = Action.BUILDING;
+                break;
         }
     }
 
@@ -57,12 +61,23 @@ public class Controller {
         return ZoningAction.NONE;
     }
 
+    public BuildingType getBuildingActionInformation() {
+        if (Action.BUILDING.equals(a)) {
+            if (road.isSelected()) {
+                return BuildingType.ROAD;
+            }
+        }
+        return BuildingType.NONE;
+    }
+
     public void update() {
-        landNeeds.getData().clear();
-        System.out.println(InfomationController.resWant*100);
-        XYChart.Series<String, Number> s = new XYChart.Series<>();
-        s.getData().add(new XYChart.Data<String,Number>("Residental", InfomationController.resWant*100));
-        landNeeds.getData().add(s);
+        resi.setText(InfomationController.resWant + "");
+        // landNeeds.getData().clear();
+        // System.out.println(InfomationController.resWant*100);
+        // XYChart.Series<String, Number> s = new XYChart.Series<>();
+        // s.getData().add(new XYChart.Data<String,Number>("Residental",
+        // InfomationController.resWant*100));
+        // landNeeds.getData().add(s);
     }
 
 }

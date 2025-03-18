@@ -26,6 +26,18 @@ public class Color {
     }
 
     public String toHexCode() {
-        return "#" + Integer.toHexString(red) + Integer.toHexString(green) + Integer.toHexString(blue);
+        String reds = Integer.toHexString(red);
+        String greens = Integer.toHexString(green);
+        String blues = Integer.toHexString(blue);
+        if (reds.length() == 1) {
+            reds = "0" + reds;
+        }
+        if (greens.length() == 1) {
+            greens = "0" + greens;
+        }
+        if (blues.length() == 1) {
+            blues = "0" + blues;
+        }
+        return "#" + reds + greens + blues;
     }
 }

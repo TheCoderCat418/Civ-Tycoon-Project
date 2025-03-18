@@ -26,10 +26,29 @@ public class AnimationManager {
         }));
     }
 
+    public static AnimationSequence getAnimationSequenceFromBuildingType(BuildingType type, boolean randomizeMultiple) {
+        switch (type) {
+            case HOUSE:
+                return AnimationManager.loadedAnimations.get(Animations.HOUSE1);
+            case ROAD:
+                return AnimationManager.loadedAnimations.get(Animations.ROAD);
+            default:
+                return AnimationManager.loadedAnimations.get(Animations.NOTSET);
+        }
+    }
+
+    public static void updateAnimationType(Tile t) {
+        for (Animation a : animationControllerTiles) {
+            if (a.t.equals(t)) {
+                a.updateType();
+            }
+        }
+    }
+
     public static void register(Animation te) {
         if (animationControllerTiles.indexOf(te) == -1) {
             animationControllerTiles.add(te);
-            te.play();
+            te.start();
         }
     }
 
@@ -42,4 +61,5 @@ public class AnimationManager {
             te.cycleToNext();
         }
     }
+
 }

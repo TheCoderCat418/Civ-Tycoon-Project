@@ -14,10 +14,10 @@ public class Tile {
     GridPane animationGrid = null;
     BuildingType type;
 
-
     Position position;
 
-    public Tile(World linkedWorld, Territory linkedTerritory, Pane linkedChildPane, Position position, BuildingType type){
+    public Tile(World linkedWorld, Territory linkedTerritory, Pane linkedChildPane, Position position,
+            BuildingType type) {
         this.linkedChildPane = linkedChildPane;
         this.linkedTerritory = linkedTerritory;
         this.linkedWorld = linkedWorld;
@@ -25,7 +25,7 @@ public class Tile {
         this.type = type;
     }
 
-    public Position getPosition(){
+    public Position getPosition() {
         return position;
     }
 }

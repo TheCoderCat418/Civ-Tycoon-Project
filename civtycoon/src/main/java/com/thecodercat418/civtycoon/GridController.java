@@ -56,21 +56,39 @@ public class GridController {
                 Tile currentTile = world.map.get(i).get(j);
                 Pane p = new Pane();
                 p.setOnMouseClicked((me) -> {
-                    p.setStyle("-fx-background-color: grey;");
-                    if (lastclicked != null) {
-                        if (lastclicked.equals(currentTile)) {
-                            p.setStyle("");
-                            lastclicked = null;
-                        } else {
-                            createTerritory(lastclicked, currentTile);
-                            // p.setStyle("");
-                            lastclicked = null;
-                        }
+                    // Find action infomation
+                    switch (c.a) {
+                        case ZONING:
+                            p.setStyle("-fx-background-color: grey;");
+                            if (lastclicked != null) {
+                                if (lastclicked.equals(currentTile)) {
+                                    p.setStyle("");
+                                    lastclicked = null;
+                                } else {
+                                    new ZonedArea(c.getZoningActionInformation(),
+                                            createTerritory(lastclicked, currentTile, -1, -1));
+                                    // p.setStyle("");
+                                    lastclicked = null;
+                                }
 
-                    } else {
-                        lastclicked = currentTile;
-                        System.out.println(lastclicked);
+                            } else {
+                                lastclicked = currentTile;
+                                System.out.println(lastclicked);
+                            }
+                            break;
+                        case BUILDING:
+                            p.setStyle("-fx-background-color: gray;");
+                            switch (c.getBuildingActionInformation()) {
+                                case ROAD:
+                                    p.setStyle("-fx-background-color: black;");
+                                    currentTile.type = BuildingType.ROAD;
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
                     }
+                    AnimationManager.updateAnimationType(currentTile);
                 });
                 gp.add(p, i, j);
 
@@ -182,18 +200,18 @@ public class GridController {
                         animationGrid.getColumnConstraints()
                                 .add(new ColumnConstraints((gp.getPrefWidth() / dimOfZoom) / 16));
                     }
-                    for(int z = 0; z <16;z++){
-                        for(int f = 0; f<16;f++){
-                            animationGrid.add(new Pane(), z,f);
+                    for (int z = 0; z < 16; z++) {
+                        for (int f = 0; f < 16; f++) {
+                            animationGrid.add(new Pane(), z, f);
                         }
                     }
                     animationGrid.setGridLinesVisible(true);
                     animationGrid.setVisible(true);
                     loadedWorld.map.get(i).get(j).linkedChildPane.getChildren().add(animationGrid);
-                    loadedWorld.map.get(i).get(j).type = BuildingType.HOUSE; //
+                    // loadedWorld.map.get(i).get(j).type = BuildingType.HOUSE; //
                     loadedWorld.map.get(i).get(j).animationGrid = animationGrid;
                     AnimationManager.register(new Animation(loadedWorld.map.get(i).get(j)));
-                    //TODO: REMOVE FORCE AUTO LOCK. Find a way to not keep requesting resources
+                    // TODO: REMOVE FORCE AUTO LOCK. Find a way to not keep requesting resources
 
                     // Fill with panes
                     // Tell controller to start only specified Tiles gathered here.
@@ -217,30 +235,31 @@ public class GridController {
         return loadedWorld.map.get(x).get(y);
     }
 
-    public Territory createTerritory(Tile startTile, Tile endTile) {
+    public Territory createTerritory(Tile startTile, Tile endTile, int maxSizeX, int maxSizeY) {
         // Allow overlapping?? Overwrites? Merging? Filling the gaps?
-        String color = "";
-        switch (c.getZoningActionInformation()) {
-            case RESIDENTIAL:
-                color = "green";
-                break;
-            case COMMERCIAL:
-                color = "blue";
-                break;
-            case INDUSTRIAL:
-                color = "orange";
-                break;
-            default:
-            color = "black";
-                break;
-        }
+        // String color = "";
+        // switch (c.getZoningActionInformation()) {
+        // case RESIDENTIAL:
+        // color = "green";
+        // break;
+        // case COMMERCIAL:
+        // color = "blue";
+        // break;
+        // case INDUSTRIAL:
+        // color = "orange";
+        // break;
+        // default:
+        // color = "black";
+        // break;
+        // }
         Territory t = new Territory();
         if (endTile.position.x <= startTile.position.x && endTile.position.y <= startTile.position.y) {
             for (int i = endTile.position.x; i < startTile.position.x + 1; i++) {
                 for (int j = endTile.position.y; j < startTile.position.y + 1; j++) {
                     t.t.add(loadedWorld.map.get(i).get(j));
                     loadedWorld.map.get(i).get(j).linkedTerritory = t;
-                    loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: " + color + ";");
+                    // loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color:
+                    // " + color + ";");
                 }
             }
         } else if (endTile.position.x >= startTile.position.x && endTile.position.y >= startTile.position.y) {
@@ -248,7 +267,8 @@ public class GridController {
                 for (int j = startTile.position.y; j < endTile.position.y + 1; j++) {
                     t.t.add(loadedWorld.map.get(i).get(j));
                     loadedWorld.map.get(i).get(j).linkedTerritory = t;
-                    loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: " + color + ";");
+                    // loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color:
+                    // " + color + ";");
                 }
             }
         } else if (endTile.position.x > startTile.position.x && endTile.position.y < startTile.position.y) {
@@ -256,7 +276,8 @@ public class GridController {
                 for (int j = endTile.position.y; j < startTile.position.y + 1; j++) {
                     t.t.add(loadedWorld.map.get(i).get(j));
                     loadedWorld.map.get(i).get(j).linkedTerritory = t;
-                    loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: " + color + ";");
+                    // loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color:
+                    // " + color + ";");
                 }
             }
         } else if (endTile.position.x < startTile.position.x && endTile.position.y > startTile.position.y) {
@@ -264,7 +285,8 @@ public class GridController {
                 for (int j = startTile.position.y; j < endTile.position.y + 1; j++) {
                     t.t.add(loadedWorld.map.get(i).get(j));
                     loadedWorld.map.get(i).get(j).linkedTerritory = t;
-                    loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color: " + color + ";");
+                    // loadedWorld.map.get(i).get(j).linkedChildPane.setStyle("-fx-background-color:
+                    // " + color + ";");
                 }
             }
         }
