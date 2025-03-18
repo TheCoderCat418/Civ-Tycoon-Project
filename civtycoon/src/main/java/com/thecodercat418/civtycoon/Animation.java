@@ -8,18 +8,25 @@ public class Animation {
     boolean running = false;
     int frameIndex = 0;
     Tile t;
-    GridPane animationGrid;
+    AnimationFilters af = AnimationFilters.NONE;
 
     public Animation(Tile t) {
         this.t = t;
-        this.animationGrid = t.animationGrid;
         updateType();
     }
 
     public void updateType() {
         stop();
         asToPlay = AnimationManager.getAnimationSequenceFromBuildingType(t.type, true);
-        start();
+    }
+
+    public void overrideType(BuildingType bt){
+        stop();
+        asToPlay = AnimationManager.getAnimationSequenceFromBuildingType(bt, true);
+    }
+
+    public void setFilter(AnimationFilters af){
+        this.af = af;
     }
 
     public void start() {
@@ -29,6 +36,18 @@ public class Animation {
 
     public void stop() {
         running = false;
+        clear();
+    }
+
+    public void clear() {
+        if(t.animationGrid==null){
+            return;
+        }
+        for (int i = 0; i < t.animationGrid.getChildren().size(); i++) {
+            if (t.animationGrid.getChildren().get(i) instanceof Pane) {
+                t.animationGrid.getChildren().get(i).setStyle("");
+            }
+        }
     }
 
     public void cycleToNext() {
@@ -38,15 +57,18 @@ public class Animation {
         if (frameIndex >= asToPlay.frames.length) {
             frameIndex = 0;
         }
-        displayFrame(animationGrid, frameIndex);
+        displayFrame(t.animationGrid, frameIndex);
         frameIndex++;
     }
 
     private void displayFrame(GridPane animationGrid, int frame) {
+        if(animationGrid==null){
+            return;
+        }
         for (int i = 0; i < animationGrid.getChildren().size(); i++) {
             if (animationGrid.getChildren().get(i) instanceof Pane) {
                 animationGrid.getChildren().get(i).setStyle("-fx-background-color: " + asToPlay.frames[frame].pixelGrid
-                        .get(i / asToPlay.frameSize).get(i % asToPlay.frameSize).toHexCode());
+                        .get(i / asToPlay.frameSize).get(i % asToPlay.frameSize).toHexCode(af));
             }
         }
     }

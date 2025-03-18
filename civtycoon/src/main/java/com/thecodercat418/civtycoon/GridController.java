@@ -88,10 +88,35 @@ public class GridController {
                             }
                             break;
                     }
-                    AnimationManager.updateAnimationType(currentTile);
+                    currentTile.a.updateType();
+                });
+                p.setOnMouseEntered((me) -> {
+                    switch (c.a) {
+                        case ZONING:
+
+                        case BUILDING:
+                            switch (c.getBuildingActionInformation()) {
+                                case ROAD:
+                                    currentTile.hoverAnimation = new Animation(currentTile);
+                                    currentTile.hoverAnimation.overrideType(BuildingType.ROAD);
+                                    currentTile.hovering(true);
+                                    currentTile.linkedChildPane.setStyle("-fx-background-color: black;");
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                    }
+                });
+                p.setOnMouseExited((me) -> {
+                    currentTile.hovering(false);
+                    currentTile.linkedChildPane.setStyle("");
+
                 });
                 gp.add(p, i, j);
-
+                Animation a = new Animation(loadedWorld.map.get(i).get(j));
+                loadedWorld.map.get(i).get(j).setAnimation(a);
+                AnimationManager.register(a);
                 currentTile.linkedChildPane = p;
             }
         }
@@ -173,7 +198,7 @@ public class GridController {
             gp.getRowConstraints().add(new RowConstraints(gp.getPrefHeight() / dimOfZoom));
             gp.getColumnConstraints().add(new ColumnConstraints(gp.getPrefWidth() / dimOfZoom));
         }
-
+        // TODO: GridPain cannot extend past num of row/comlom*10
         for (int i = dimOfZoom * minimapx; i < dimOfZoom + dimOfZoom * minimapx; i++) {
             for (int j = dimOfZoom * minimapy; j < dimOfZoom + dimOfZoom * minimapy; j++) {
 
@@ -208,9 +233,10 @@ public class GridController {
                     animationGrid.setGridLinesVisible(true);
                     animationGrid.setVisible(true);
                     loadedWorld.map.get(i).get(j).linkedChildPane.getChildren().add(animationGrid);
-                    // loadedWorld.map.get(i).get(j).type = BuildingType.HOUSE; //
+                    loadedWorld.map.get(i).get(j).type = BuildingType.NONE; //
                     loadedWorld.map.get(i).get(j).animationGrid = animationGrid;
-                    AnimationManager.register(new Animation(loadedWorld.map.get(i).get(j)));
+                    loadedWorld.map.get(i).get(j).a.start();
+
                     // TODO: REMOVE FORCE AUTO LOCK. Find a way to not keep requesting resources
 
                     // Fill with panes

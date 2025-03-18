@@ -12,7 +12,9 @@ public class Tile {
     Pane linkedChildPane;
     ArrayList<AnimationObject> aos = new ArrayList<>();
     GridPane animationGrid = null;
-    BuildingType type;
+    Animation a = null;
+    Animation hoverAnimation = null;
+    BuildingType type = BuildingType.NONE;
 
     Position position;
 
@@ -23,6 +25,25 @@ public class Tile {
         this.linkedWorld = linkedWorld;
         this.position = position;
         this.type = type;
+    }
+
+    public void hovering(boolean entering) {
+        if (hoverAnimation == null) {
+            return;
+        }
+        if (entering) {
+            a.stop();
+            hoverAnimation.start();
+        } else {
+            hoverAnimation.stop();
+            hoverAnimation = null;
+            a.start();
+
+        }
+    }
+
+    public void setAnimation(Animation a) {
+        this.a = a;
     }
 
     public Position getPosition() {
