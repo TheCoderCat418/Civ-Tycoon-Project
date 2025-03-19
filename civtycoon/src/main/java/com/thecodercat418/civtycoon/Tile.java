@@ -35,9 +35,9 @@ public class Tile {
             a.stop();
             hoverAnimation.start();
         } else {
-            //hoverAnimation.stop();
-            //hoverAnimation = null;
-            //a.start();
+            hoverAnimation.stop();
+            hoverAnimation = null;
+            a.start();
 
         }
     }

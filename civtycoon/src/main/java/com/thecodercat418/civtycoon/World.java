@@ -33,4 +33,9 @@ public class World {
 
         }
     }
+
+    public Tile getTile(int x, int y) {
+        //t.linkedChildPane.setStyle("-fx-background-color: green;");
+        return map.get(x).get(y);
+    }
 }

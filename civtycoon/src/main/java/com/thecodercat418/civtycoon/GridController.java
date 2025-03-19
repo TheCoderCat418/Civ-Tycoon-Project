@@ -256,9 +256,8 @@ public class GridController {
     }
 
     public Tile getTile(int x, int y) {
-        Tile t = loadedWorld.map.get(x).get(y);
-        t.linkedChildPane.setStyle("-fx-background-color: green;");
-        return loadedWorld.map.get(x).get(y);
+        //t.linkedChildPane.setStyle("-fx-background-color: green;");
+        return loadedWorld.getTile(x, y);
     }
 
     public Territory createTerritory(Tile startTile, Tile endTile, int maxSizeX, int maxSizeY) {
