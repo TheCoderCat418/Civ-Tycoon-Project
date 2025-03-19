@@ -55,6 +55,14 @@ public class ZonedArea {
     }
 
     public void createBuilding() {
+        for (Tile t : occupiedArea.t) {
+            //Find the one next to roads
+            if(true){ //Next to road
+            //Create house by seeing how far you can extend. (directly relates to the number of people, max size 3x3)
+            // Has the house class and is isshued a tick entry. holds people(person[]) and monitors them to upgrade the house. should also have some random needs
+            // House should be knolageable of the stats around it (e.g distance away from fire station etc.)
+            }
+        }
         // find building placement
         // Create building
         // switch (zone) {
