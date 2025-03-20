@@ -96,7 +96,7 @@ public class GridController {
                                     p.setStyle("");
                                     lastclicked = null;
                                 } else {
-                                    new PathfindingEngine(lastclicked, currentTile, null);
+                                    new PathfindingEngine(lastclicked, currentTile);
                                     lastclicked = null;
                                 }
 
@@ -130,8 +130,8 @@ public class GridController {
                     }
                 });
                 p.setOnMouseExited((me) -> {
-                    currentTile.hovering(false);
-                    currentTile.linkedChildPane.setStyle("");
+                    //currentTile.hovering(false);
+                    //currentTile.linkedChildPane.setStyle("");
 
                 });
                 gp.add(p, i, j);

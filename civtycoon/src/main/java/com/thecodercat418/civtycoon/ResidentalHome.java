@@ -1,9 +1,16 @@
 package com.thecodercat418.civtycoon;
 
-public class ResidentalHome extends Building {
-    int people;
+import javafx.scene.layout.Pane;
 
-    public ResidentalHome(Territory occupiedArea) {
-        super(occupiedArea);
+public class ResidentalHome extends Tile {
+    int people = 0;
+    int level = 1;
+
+    public ResidentalHome(World linkedWorld, Territory linkedTerritory, Pane linkedChildPane, Position position,
+            BuildingType type) {
+        super(linkedWorld, linkedTerritory, linkedChildPane, position, type);
     }
+
+    
+
 }

@@ -42,7 +42,7 @@ public class Controller {
         // gc.getTile(2, 8).a.updateType().start();
         // gc.getTile(2, 9).a.updateType().start();
         // gc.getTile(3, 9).a.updateType().start();
-        new PathfindingEngine(gc.getTile(3, 5), gc.getTile(3, 9), null);
+        new PathfindingEngine(gc.getTile(3, 5), gc.getTile(3, 9));
 
     }
 

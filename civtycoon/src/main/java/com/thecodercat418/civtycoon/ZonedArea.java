@@ -16,13 +16,13 @@ public class ZonedArea {
         String color = "";
         switch (za) {
             case RESIDENTIAL:
-                color = "green";
+                color = "darkgreen";
                 break;
             case COMMERCIAL:
-                color = "blue";
+                color = "darkblue";
                 break;
             case INDUSTRIAL:
-                color = "orange";
+                color = "darkorange";
                 break;
             default:
                 color = "black";
@@ -107,6 +107,7 @@ public class ZonedArea {
         
         Tile selectedTile = wRoad.get((int) Math.random() * wRoad.size());
         selectedTile.type = BuildingType.HOUSE;
+        selectedTile.linkedChildPane.setStyle("-fx-background-color: lightgreen;");
         selectedTile.a.updateType();
         selectedTile.a.start();
         System.out.println(selectedTile);
