@@ -52,7 +52,7 @@ public class AnimationManager {
         }
     }
 
-    public static void unregister(TickEntry te) {
+    public static void unregister(Animation te) {
         animationControllerTiles.removeIf(tefromarr -> (tefromarr.equals(te)));
     }
 

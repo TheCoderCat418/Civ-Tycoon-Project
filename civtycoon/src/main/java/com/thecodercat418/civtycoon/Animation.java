@@ -15,14 +15,16 @@ public class Animation {
         updateType();
     }
 
-    public void updateType() {
+    public Animation updateType() {
         stop();
         asToPlay = AnimationManager.getAnimationSequenceFromBuildingType(t.type, true);
+        return this;
     }
 
-    public void overrideType(BuildingType bt){
+    public Animation overrideType(BuildingType bt){
         stop();
         asToPlay = AnimationManager.getAnimationSequenceFromBuildingType(bt, true);
+        return this;
     }
 
     public void setFilter(AnimationFilters af){

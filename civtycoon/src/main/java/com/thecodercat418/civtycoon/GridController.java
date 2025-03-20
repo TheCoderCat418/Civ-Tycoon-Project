@@ -56,6 +56,7 @@ public class GridController {
                 Tile currentTile = world.map.get(i).get(j);
                 Pane p = new Pane();
                 p.setOnMouseClicked((me) -> {
+                    
                     // Find action infomation
                     switch (c.a) {
                         case ZONING:
@@ -82,13 +83,31 @@ public class GridController {
                                 case ROAD:
                                     p.setStyle("-fx-background-color: black;");
                                     currentTile.type = BuildingType.ROAD;
+                                    currentTile.a.updateType();
                                     break;
                                 default:
                                     break;
                             }
                             break;
+                        default:
+                        p.setStyle("-fx-background-color: grey;");
+                            if (lastclicked != null) {
+                                if (lastclicked.equals(currentTile)) {
+                                    p.setStyle("");
+                                    lastclicked = null;
+                                } else {
+                                    new PathfindingEngine(lastclicked, currentTile, null);
+                                    lastclicked = null;
+                                }
+
+                            } else {
+                                lastclicked = currentTile;
+                                System.out.println(lastclicked);
+                            }
+                            break;
                     }
                     currentTile.a.updateType();
+                    currentTile.a.start();
                 });
                 p.setOnMouseEntered((me) -> {
                     switch (c.a) {
@@ -97,15 +116,17 @@ public class GridController {
                         case BUILDING:
                             switch (c.getBuildingActionInformation()) {
                                 case ROAD:
-                                    currentTile.hoverAnimation = new Animation(currentTile);
-                                    currentTile.hoverAnimation.overrideType(BuildingType.ROAD);
-                                    currentTile.hovering(true);
-                                    currentTile.linkedChildPane.setStyle("-fx-background-color: black;");
+                                    // currentTile.hoverAnimation = new Animation(currentTile);
+                                    // currentTile.hoverAnimation.overrideType(BuildingType.ROAD);
+                                    // currentTile.hovering(true);
+                                    // currentTile.linkedChildPane.setStyle("-fx-background-color: black;");
                                     break;
                                 default:
                                     break;
                             }
                             break;
+                        case Pathfinding:
+                        break;
                     }
                 });
                 p.setOnMouseExited((me) -> {

@@ -8,6 +8,7 @@ public class ZonedArea {
 
     public ZoningAction zone = ZoningAction.NONE;
     Territory occupiedArea;
+    TickEntry te;
 
     public ZonedArea(ZoningAction za, Territory occupiedArea) {
         zone = za;
@@ -30,31 +31,27 @@ public class ZonedArea {
         for (Tile t : occupiedArea.t) {
             t.linkedChildPane.setStyle("-fx-background-color: " + color + ";");
         }
-        TickManager.register(() -> {
+        te = () -> {
             runTick();
-        });
+        };
+        TickManager.register(te);
     }
 
     public void runTick() {
-        double want = 0;
-        switch (zone) {
-            case RESIDENTIAL:
-                want = InfomationController.resWant;
-                break;
-            case COMMERCIAL:
-                want = InfomationController.comWant;
-                break;
-            case INDUSTRIAL:
-                want = InfomationController.indWant;
-                break;
-
-            default:
-                break;
-        }
-        if ((int)(Math.random() * 10) == 0) {
-            System.out.println("MADE");
+        if ((int)(Math.random() * 20) == 0) {
+            
             createBuilding();
         }
+        boolean still = false;
+        for (Tile t : occupiedArea.t) {
+            if(!t.type.equals(BuildingType.HOUSE)){
+                still = true;
+            }
+        }
+        if(!still){
+            TickManager.unregister(te);
+        }
+
     }
 
     public void createBuilding() {
@@ -107,9 +104,11 @@ public class ZonedArea {
             return;
         }
         //boolean done = false;
+        
         Tile selectedTile = wRoad.get((int) Math.random() * wRoad.size());
         selectedTile.type = BuildingType.HOUSE;
         selectedTile.a.updateType();
+        selectedTile.a.start();
         System.out.println(selectedTile);
     }
 }

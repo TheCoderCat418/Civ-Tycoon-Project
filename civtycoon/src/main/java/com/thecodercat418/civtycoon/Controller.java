@@ -20,19 +20,33 @@ public class Controller {
     public Action a = Action.ZONING;
 
     public void initialize() {
-        // CategoryAxis x = new
-        // CategoryAxis(FXCollections.<String>observableArrayList(Arrays.asList(
-        // "Residental", "Commerial", "Industrial")));
-        // NumberAxis y = new NumberAxis();
-        // landNeeds = new BarChart<>(x, y);
         TickManager.setup();
         AnimationManager.setup();
         InfomationController.setup();
         TickManager.register(() -> {
             update();
         });
-        new GridController(new World(20), gp, gpmm, this);
+        GridController gc = new GridController(new World(20), gp, gpmm, this);
         // gc.setZoom(5, 0, 0);
+        // gc.getTile(3, 5).type = BuildingType.HOUSE;
+        // gc.getTile(2, 5).type = BuildingType.ROAD;
+        // gc.getTile(2, 6).type = BuildingType.ROAD;
+        // gc.getTile(2, 7).type = BuildingType.ROAD;
+        // gc.getTile(2, 8).type = BuildingType.ROAD;
+        // gc.getTile(2, 9).type = BuildingType.ROAD;
+        // gc.getTile(3, 9).type = BuildingType.HOUSE;
+        // gc.getTile(3, 5).a.updateType().start();
+        // gc.getTile(2, 5).a.updateType().start();
+        // gc.getTile(2, 6).a.updateType().start();
+        // gc.getTile(2, 7).a.updateType().start();
+        // gc.getTile(2, 8).a.updateType().start();
+        // gc.getTile(2, 9).a.updateType().start();
+        // gc.getTile(3, 9).a.updateType().start();
+        new PathfindingEngine(gc.getTile(3, 5), gc.getTile(3, 9), null);
+
+    }
+
+    public void ph(){
 
     }
 
@@ -45,7 +59,11 @@ public class Controller {
             case "Build":
                 a = Action.BUILDING;
                 break;
+            case "Pathfinding":
+                a = Action.Pathfinding;
+                break;
         }
+        
     }
 
     public ZoningAction getZoningActionInformation() {
@@ -71,13 +89,7 @@ public class Controller {
     }
 
     public void update() {
-        resi.setText(InfomationController.resWant + "");
-        // landNeeds.getData().clear();
-        // System.out.println(InfomationController.resWant*100);
-        // XYChart.Series<String, Number> s = new XYChart.Series<>();
-        // s.getData().add(new XYChart.Data<String,Number>("Residental",
-        // InfomationController.resWant*100));
-        // landNeeds.getData().add(s);
+        resi.setText(InfomationController.money + "");
     }
 
 }
