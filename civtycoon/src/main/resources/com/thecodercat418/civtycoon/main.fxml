@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecodercat418.civtycoon.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecodercat418.civtycoon.Controller">
    <children>
       <GridPane fx:id="gp" gridLinesVisible="true" prefHeight="800.0" prefWidth="800.0">
         <columnConstraints>
@@ -34,7 +34,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <ToggleButton layoutX="800.0" layoutY="54.0" mnemonicParsing="false" onAction="#changeAction" text="Zone Area">
+      <ToggleButton layoutX="813.0" layoutY="54.0" mnemonicParsing="false" onAction="#changeAction" text="Zone Area">
          <toggleGroup>
             <ToggleGroup fx:id="main" />
          </toggleGroup>
@@ -47,33 +47,8 @@
       <ToggleButton fx:id="CZ" layoutX="960.0" layoutY="54.0" mnemonicParsing="false" style="-fx-background-color: lightblue;" text="Commerical" toggleGroup="$z" />
       <ToggleButton fx:id="IZ" layoutX="1040.0" layoutY="54.0" mnemonicParsing="false" style="-fx-background-color: orange;" text="Industrial" toggleGroup="$z" />
       <Label fx:id="resi" layoutX="1059.0" layoutY="112.0" text="Label" />
-      <ToggleButton fx:id="road" layoutX="872.0" layoutY="109.0" mnemonicParsing="false" text="Road" toggleGroup="$z" />
-      <ToggleButton layoutX="805.0" layoutY="108.0" mnemonicParsing="false" onAction="#changeAction" text="Build" toggleGroup="$main" />
-      <ToggleButton fx:id="road1" layoutX="872.0" layoutY="263.0" mnemonicParsing="false" text="School">
-         <toggleGroup>
-            <ToggleGroup fx:id="z1" />
-         </toggleGroup>
-      </ToggleButton>
-      <ToggleButton fx:id="road11" layoutX="871.0" layoutY="193.0" mnemonicParsing="false" text="Landfill">
-         <toggleGroup>
-            <ToggleGroup fx:id="z11" />
-         </toggleGroup>
-      </ToggleButton>
-      <ToggleButton fx:id="road111" layoutX="850.0" layoutY="226.0" mnemonicParsing="false" text="Medical Center">
-         <toggleGroup>
-            <ToggleGroup fx:id="z111" />
-         </toggleGroup>
-      </ToggleButton>
-      <ToggleButton fx:id="road1111" layoutX="871.0" layoutY="168.0" mnemonicParsing="false" text="Fire Station">
-         <toggleGroup>
-            <ToggleGroup fx:id="z1111" />
-         </toggleGroup>
-      </ToggleButton>
-      <ToggleButton fx:id="road11111" layoutX="865.0" layoutY="143.0" mnemonicParsing="false" text="Police Station">
-         <toggleGroup>
-            <ToggleGroup fx:id="z11111" />
-         </toggleGroup>
-      </ToggleButton>
-      <ToggleButton layoutX="865.0" layoutY="428.0" mnemonicParsing="false" onAction="#changeAction" text="Pathfinding" toggleGroup="$main" />
+      <ToggleButton fx:id="road" layoutX="889.0" layoutY="108.0" mnemonicParsing="false" text="Road" toggleGroup="$z" />
+      <ToggleButton layoutX="827.0" layoutY="108.0" mnemonicParsing="false" onAction="#changeAction" text="Build" toggleGroup="$main" />
+      <ToggleButton layoutX="810.0" layoutY="173.0" mnemonicParsing="false" onAction="#changeAction" text="Pathfinding" toggleGroup="$main" />
    </children>
 </AnchorPane>
