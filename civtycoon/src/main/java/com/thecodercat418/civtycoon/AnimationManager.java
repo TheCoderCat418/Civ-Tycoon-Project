@@ -32,6 +32,13 @@ public class AnimationManager {
                 return AnimationManager.loadedAnimations.get(Animations.HOUSE1);
             case ROAD:
                 return AnimationManager.loadedAnimations.get(Animations.ROAD);
+                case COMPANY:
+                return AnimationManager.loadedAnimations.get(Animations.BUSNESS1);
+            
+                case FACTORY:
+                return AnimationManager.loadedAnimations.get(Animations.INDUSTRY1);
+
+            
             default:
                 return AnimationManager.loadedAnimations.get(Animations.NOTSET);
         }

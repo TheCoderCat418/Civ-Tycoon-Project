@@ -26,7 +26,7 @@ public class Controller {
         TickManager.register(() -> {
             update();
         });
-        GridController gc = new GridController(new World(20), gp, gpmm, this);
+        GridController gc = new GridController(new World(24), gp, gpmm, this);
         // gc.setZoom(5, 0, 0);
         // gc.getTile(3, 5).type = BuildingType.HOUSE;
         // gc.getTile(2, 5).type = BuildingType.ROAD;
@@ -89,7 +89,7 @@ public class Controller {
     }
 
     public void update() {
-        resi.setText(InfomationController.money + "");
+        resi.setText("$" + InfomationController.money);
     }
 
 }

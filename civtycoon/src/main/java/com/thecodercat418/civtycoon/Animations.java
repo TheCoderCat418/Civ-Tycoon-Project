@@ -4,6 +4,7 @@ public enum Animations {
     HOUSE1,
     ROAD,
     PROBLEM,
-    
+    BUSNESS1,
+    INDUSTRY1,
     NOTSET
 }

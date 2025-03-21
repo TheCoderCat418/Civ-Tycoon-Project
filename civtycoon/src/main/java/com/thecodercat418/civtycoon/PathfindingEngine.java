@@ -13,7 +13,7 @@ public class PathfindingEngine {
         initalTile = startTile;
         this.destinationTile = destinationTile;
         currentTile = startTile;
-        directions = digDeeper(Direction.START, currentTile, BuildingType.NONE);
+        directions = digDeeper(Direction.START, currentTile); //, BuildingType.NONE);
         for (int i = 0; i < directions.size(); i++) {
             if (directions.get(i).equals(Direction.RIGHT) || directions.get(i).equals(Direction.LEFT)
                     || directions.get(i).equals(Direction.DOWN) || directions.get(i).equals(Direction.UP)) {
@@ -36,7 +36,7 @@ public class PathfindingEngine {
         initalTile = startTile;
         this.destinationTile = destinationTile;
         currentTile = startTile;
-        directions = digDeeper(Direction.START, currentTile, lookingFor);
+        directions = digDeeper(Direction.START, currentTile );//, lookingFor);
         for (int i = 0; i < directions.size(); i++) {
             if (directions.get(i).equals(Direction.RIGHT) || directions.get(i).equals(Direction.LEFT)
                     || directions.get(i).equals(Direction.DOWN) || directions.get(i).equals(Direction.UP)) {
@@ -55,7 +55,7 @@ public class PathfindingEngine {
         }
     }
 
-    public ArrayList<Direction> digDeeper(Direction lastDirection, Tile from, BuildingType lookingFor) {
+    public ArrayList<Direction> digDeeper(Direction lastDirection, Tile from){  //, BuildingType lookingFor) {
         ArrayList<Direction> tempdirs = new ArrayList<>();
         tempdirs.add(lastDirection);
         Tile up = from.linkedWorld.getTile(from.position.x, from.position.y - 1);
@@ -72,7 +72,7 @@ public class PathfindingEngine {
             if (up.type.equals(BuildingType.ROAD) && !lastDirection.equals(Direction.UP)) {
                 directionCanMove.set(0, true);
             }
-            if (up.equals(destinationTile) || up.type.equals(lookingFor) ) {
+            if (up.equals(destinationTile) ){//|| up.type.equals(lookingFor) ) {
                 tempdirs.add(Direction.DOWN);
                 tempdirs.add(Direction.END);
                 return tempdirs;
@@ -82,7 +82,7 @@ public class PathfindingEngine {
             if (down.type.equals(BuildingType.ROAD) && !lastDirection.equals(Direction.DOWN)) {
                 directionCanMove.set(1, true);
             }
-            if (down.equals(destinationTile) || down.type.equals(lookingFor)) {
+            if (down.equals(destinationTile) ){//|| down.type.equals(lookingFor)) {
                 tempdirs.add(Direction.UP);
                 tempdirs.add(Direction.END);
                 return tempdirs;
@@ -92,7 +92,7 @@ public class PathfindingEngine {
             if (left.type.equals(BuildingType.ROAD) && !lastDirection.equals(Direction.LEFT)) {
                 directionCanMove.set(2, true);
             }
-            if (left.equals(destinationTile) || left.type.equals(lookingFor)) {
+            if (left.equals(destinationTile) ){//|| left.type.equals(lookingFor)) {
                 tempdirs.add(Direction.RIGHT);
                 tempdirs.add(Direction.END);
                 return tempdirs;
@@ -102,7 +102,7 @@ public class PathfindingEngine {
             if (right.type.equals(BuildingType.ROAD) && !lastDirection.equals(Direction.RIGHT)) {
                 directionCanMove.set(3, true);
             }
-            if (right.equals(destinationTile) || right.type.equals(lookingFor)) {
+            if (right.equals(destinationTile)){// || right.type.equals(lookingFor)) {
                 tempdirs.add(Direction.LEFT);
                 tempdirs.add(Direction.END);
                 return tempdirs;
@@ -132,7 +132,7 @@ public class PathfindingEngine {
                             d = Direction.LEFT;
                             break;
                     }
-                    ArrayList<Direction> dir = digDeeper(d, t);
+                    ArrayList<Direction> dir = digDeeper(d, t);//, lookingFor);
                     if (dir.contains(Direction.END)) {
                         tempdirs.addAll(dir);
                     }

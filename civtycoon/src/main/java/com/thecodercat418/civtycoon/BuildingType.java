@@ -4,5 +4,7 @@ public enum BuildingType {
     HOUSE,
     ROAD,
     PROBLEM,
+    COMPANY,
+    FACTORY,
     NONE
 }

@@ -84,6 +84,7 @@ public class GridController {
                                     p.setStyle("-fx-background-color: black;");
                                     currentTile.type = BuildingType.ROAD;
                                     currentTile.a.updateType();
+                                    InfomationController.money-=200;
                                     break;
                                 default:
                                     break;
@@ -143,7 +144,7 @@ public class GridController {
         }
 
         // minimap
-        miniWorld = new World(world.dimx / 10);
+        miniWorld = new World(world.dimx / 8);
 
         for (int i = gpmm.getChildren().size() - 1; i > 0; i--) {
             if (gpmm.getChildren().get(i) instanceof Group) {
@@ -183,7 +184,7 @@ public class GridController {
                     p.setStyle("-fx-background-color: grey;");
                     System.out.println(p.getStyle());
                     minigridnum = Integer.toString(f) + Integer.toString(t);
-                    setZoom(10, f, t);
+                    setZoom(8, f, t);
                 });
 
                 gpmm.add(p, i, j);

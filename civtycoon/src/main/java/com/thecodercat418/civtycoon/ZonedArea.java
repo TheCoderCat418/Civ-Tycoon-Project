@@ -106,8 +106,19 @@ public class ZonedArea {
         //boolean done = false;
         
         Tile selectedTile = wRoad.get((int) Math.random() * wRoad.size());
-        selectedTile.type = BuildingType.HOUSE;
-        selectedTile.linkedChildPane.setStyle("-fx-background-color: lightgreen;");
+        switch (zone) {
+            case RESIDENTIAL:
+            selectedTile.type = BuildingType.HOUSE;
+            selectedTile.linkedChildPane.setStyle("-fx-background-color: lightgreen;");
+                break;
+            case COMMERCIAL:selectedTile.type = BuildingType.COMPANY;
+            selectedTile.linkedChildPane.setStyle("-fx-background-color: lightblue;");
+            break;
+            case INDUSTRIAL:selectedTile.type = BuildingType.FACTORY;
+            selectedTile.linkedChildPane.setStyle("-fx-background-color: lightorange;");
+            break;
+        }
+        InfomationController.addPopulation(1);
         selectedTile.a.updateType();
         selectedTile.a.start();
         System.out.println(selectedTile);
