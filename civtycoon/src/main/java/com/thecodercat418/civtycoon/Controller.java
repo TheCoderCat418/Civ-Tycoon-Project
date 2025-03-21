@@ -17,6 +17,7 @@ public class Controller {
     public ToggleButton road;
     public BarChart<String, Number> landNeeds;
     public Label resi;
+    public Label pf;
     public Action a = Action.ZONING;
 
     public void initialize() {

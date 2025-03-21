@@ -97,7 +97,16 @@ public class GridController {
                                     p.setStyle("");
                                     lastclicked = null;
                                 } else {
-                                    new PathfindingEngine(lastclicked, currentTile);
+                                    PathfindingEngine pe = new PathfindingEngine(lastclicked, currentTile);
+                                    String s = "";
+                                    for(Direction d : pe.directions){
+                                        s+=d.name()+";";
+                                        if(d.equals(Direction.END)){
+                                            break;
+                                        }
+                                        
+                                    }
+                                    c.pf.setText(s);
                                     lastclicked = null;
                                 }
 
